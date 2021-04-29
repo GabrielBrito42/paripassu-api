@@ -17,7 +17,7 @@ public class ResetPasswords extends HttpServlet {
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String params = request.getParameter("manager");
-	    try {
+		try {
 			controller.resetPasswords(params);
 		} catch (Exception e) {
 			e.printStackTrace();
