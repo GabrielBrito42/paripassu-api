@@ -18,7 +18,7 @@ public class CallPassword extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String params = request.getParameter("manager");
 		String password = "";
-	    try {
+		try {
 			password = controller.callNextPassword(params);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
