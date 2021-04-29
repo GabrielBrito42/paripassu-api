@@ -48,22 +48,22 @@ public class PostgresqlDAO {
 	public ArrayList<Password> getData() throws SQLException, ClassNotFoundException {
 		Class.forName("org.postgresql.Driver");
 		con = DriverManager.getConnection(url, "postgres", "1234");
-		
+
 		PreparedStatement pst = con.prepareStatement("SELECT * FROM public.passwords");
 		ResultSet rs = pst.executeQuery();
-		
+
 		ArrayList<Password> data = new ArrayList<Password>();
-        while ( rs.next() ) {
-            String password = rs.getString("password");
-            String type = rs.getString("type");
-            Boolean enabled = rs.getBoolean("enabled");
-        	Password passwordToAdd = new Password(password, type, enabled);
-            data.add(passwordToAdd);
-        }
-        rs.close();
-        pst.close();
-        con.close();
-        return data;
+		while ( rs.next() ) {
+		String password = rs.getString("password");
+		String type = rs.getString("type");
+		Boolean enabled = rs.getBoolean("enabled");
+		Password passwordToAdd = new Password(password, type, enabled);
+		data.add(passwordToAdd);
+		}
+		rs.close();
+		pst.close();
+		con.close();
+		return data;
 	}
 	
 	public int getPasswordsFromTypeSize(String type) throws SQLException, ClassNotFoundException {
@@ -73,11 +73,11 @@ public class PostgresqlDAO {
 		pst.setString(1, type);
 		ResultSet rs = pst.executeQuery();
 		int result = 0;
-        while ( rs.next() ) {
-    		result = rs.getInt(1);
-        }
-        pst.close();
-        con.close();
+		while ( rs.next() ) {
+		result = rs.getInt(1);
+		}
+		pst.close();
+		con.close();
 		return result;
 	}
 	
@@ -88,11 +88,11 @@ public class PostgresqlDAO {
 		pst.setString(1, type);
 		ResultSet rs = pst.executeQuery();
 		int result = 0;
-        while ( rs.next() ) {
-    		result = rs.getInt(1);
-        }
-        pst.close();
-        con.close();
+		while ( rs.next() ) {
+		result = rs.getInt(1);
+		}
+		pst.close();
+		con.close();
 		return result;
 	}
 	
@@ -103,14 +103,14 @@ public class PostgresqlDAO {
 		pst.setString(1, passwordtype);
 		ResultSet rs = pst.executeQuery();
 		ArrayList<Password> data = new ArrayList<Password>();
-        while ( rs.next() ) {
-            String password = rs.getString("password");
-            String type = rs.getString("type");
-            Boolean enabled = rs.getBoolean("enabled");
-        	Password passwordToAdd = new Password(password, type, enabled);
-            data.add(passwordToAdd);
-        }
-        return data;
+		while ( rs.next() ) {
+		String password = rs.getString("password");
+		String type = rs.getString("type");
+		Boolean enabled = rs.getBoolean("enabled");
+		Password passwordToAdd = new Password(password, type, enabled);
+		data.add(passwordToAdd);
+		}
+		return data;
 	}
 	
 	public void savePassword(int passwordValue, String passwordType) throws SQLException {
@@ -121,8 +121,8 @@ public class PostgresqlDAO {
 		pst.setInt(2, passwordValue);
 		pst.setBoolean(3, true);
 		pst.execute();
-        pst.close();
-        con.close();
+		pst.close();
+		con.close();
 	}
 	
 	public void callNextPassword(String password, String type) throws SQLException {
@@ -132,8 +132,8 @@ public class PostgresqlDAO {
 		pst.setInt(1, Integer.parseInt(password));
 		pst.setString(2, type);
 		pst.execute();
-        pst.close();
-        con.close();
+		pst.close();
+		con.close();
 	}
 	
 	public void resetPasswords() throws SQLException {
@@ -141,7 +141,7 @@ public class PostgresqlDAO {
 		con = DriverManager.getConnection(url, "postgres", "1234");
 		PreparedStatement pst = con.prepareStatement(query);
 		pst.execute();
-        pst.close();
-        con.close();
+		pst.close();
+		con.close();
 	}
 }
